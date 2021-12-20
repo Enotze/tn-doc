@@ -9,7 +9,7 @@ MassTransit и RabbitMQ используются для интеграции с 
 * [Схемы получения сообщения](#схемы-получения-сообщения)
 * [Примеры сообщений, которые получает ТН](#input-messages)
 * [Примеры сообщений, которые отправляет ТН](#output-messages)
-* [Технические детали MassTransit и RabbitMQ в ТехНадзоре](#технические-детали-mass-transit-и-rabbit-mq-в-тех-надзоре)
+* [Технические детали MassTransit и RabbitMQ в ТехНадзоре](#mt-technical-info)
 * [Консольная команда для публикации](#masstransit-publish)
 * [Консольная команда для прослушивания](#masstransit-consume)
 * [Все возможные слушатели](#все-возможные-слушатели)
@@ -1726,7 +1726,7 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 </details>
 
-### Технические детали MassTransit и RabbitMQ в ТехНадзоре
+### Технические детали MassTransit и RabbitMQ в ТехНадзоре <a id="mt-technical-info"/>
 
 Классы сообщений для прослушивания и публикации находятся в отдельном
 пакете [pik/pik-esb-messages](https://git.pik.ru/php/pik-esb-messages).
