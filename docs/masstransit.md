@@ -5,6 +5,7 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 Содержание:
 
+* [Адреса RabbitMQ](#rabbitmq-addresses)
 * [Получение сообщения от внешней системы](#получение-сообщения-от-внешней-системы)
 * [Схемы получения сообщения](#схемы-получения-сообщения)
 * [Примеры сообщений, которые получает ТН](#input-messages)
@@ -15,6 +16,12 @@ MassTransit и RabbitMQ используются для интеграции с 
 * [Все возможные слушатели](#все-возможные-слушатели)
 * [Отслеживание процесса публикации и получения сообщений](#отслеживание-процесса-публикации-и-получения-сообщений)
 * [Настройка MassTransit и RabbitMQ на стендах](#stands-settings)
+
+### Адреса RabbitMQ <a id="rabbitmq-addresses"/>
+
+| RabbitMQ для feature стендов | RabbitMQ для test стенда | RabbitMQ для prod |
+| --- | --- | --- |
+| https://rabbit.dev.svc.pik-digital.ru/#/ | https://rabbit.test.svc.pik-digital.ru/#/| https://rabbit.svc.pik-digital.ru/#/ |
 
 ### Получение сообщения от внешней системы
 
@@ -67,10 +74,6 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 </details>
 
-| RabbitMQ для feature стендов | RabbitMQ для test стенда | RabbitMQ для prod |
-| --- | --- | --- |
-| https://rabbit.dev.svc.pik-digital.ru/#/ | https://rabbit.test.svc.pik-digital.ru/#/| https://rabbit.svc.pik-digital.ru/#/ |
-
 2. Автоматически создаются exchange c названиями `PIK.ESB.Messages.Implementation.BOP:IdpTeam`
    и `PIK.ESB.Messages.BOP:IIdpTeam`, которые связаны друг с другом. Названия exchange можно найти в сообщении в
    поле `messageType`.
@@ -106,6 +109,8 @@ MassTransit и RabbitMQ используются для интеграции с 
 название `tracker-feature-74374`, как и exchange:
 
 ![mr-list](images/tracker-feature-74374-exchange.png)
+
+### <a id="rabbitmq-queue-consumers"/>
 
 6. Дальше сообщение из очереди `tracker-feature-74374` попадает слушателю (consumer):
 
@@ -795,68 +800,68 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 ```json
 {
-      "messageId": "ac9b0000-568d-0050-610d-08d9bf491fee",
-      "conversationId": "ac9b0000-568d-0050-615f-08d9bf491fee",
-      "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
-      "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.MDS:IObject",
-      "messageType": [
-        "urn:message:PIK.ESB.Messages.MDS:IObject",
-        "urn:message:PIK.ESB.Messages:IMessage"
-      ],
-      "message": {
-        "id": 2686,
-        "name": "ТИНАО, Внуковское пос., Авиаконструктора Петлякова ул., 9",
-        "commercialName": "",
-        "shortName": "",
-        "comment": "",
-        "code1C": "RU77МОС.000.062.0.0009.10Д00.О",
-        "districtId": 509,
-        "directionId": 1,
-        "countryId": 181,
-        "regionId": 18,
-        "cityId": 26,
-        "projectId": 795,
-        "projectGuid1C": "13ad001b-fb16-4030-bac9-c0c59ec06f59",
-        "queue": "0",
-        "roomType": "",
-        "objectEncumbrance": false,
-        "containsBuiltInSKB": false,
-        "objectCategoryId": 6,
-        "objectKindId": 4,
-        "objectSeriesId": 67,
-        "objectTypeId": 6,
-        "objectProjectTypeId": 1,
-        "addressPost": "ТИНАО, Внуковское пос., Авиаконструктора Петлякова ул., 9",
-        "addressPostFull": "",
-        "addressBuilding": "",
-        "startDate": "2016-01-01T00:00:00",
-        "guid1C": "94679528-2dc0-4e6b-8bb8-d53243757aaf",
-        "isRenovation": false,
-        "flatDecorationTypeIds": [],
-        "created": "2017-07-05T17:27:10.71",
-        "modified": "2021-12-15T00:30:05.027",
-        "version": "AAAAAazJPvM=",
-        "messageSendDate": "2021-12-15T00:30:05.3446655+03:00",
-        "messageId": "ace5139f-35b7-447a-93c7-bfd15b93de1e",
-        "messageDateTimeUtc": "2021-12-14T21:30:05.3446655Z",
-        "messageUniqueId": "ace5139f-35b7-447a-93c7-bfd15b93de1e",
-        "batchMessageTotal": 1,
-        "batchMessageNumber": 1,
-        "processUniqueId": "832decd7-13da-4f45-b1e6-93a748e40538"
-      },
-      "sentTime": "2021-12-14T21:31:43.8869773Z",
-      "headers": [],
-      "host": {
-        "machineName": "SVPWEB01MSK02",
-        "processName": "PIK.MDS.HangFire",
-        "processId": 902040,
-        "assembly": "PIK.MDS.HangFire",
-        "assemblyVersion": "1.0.0.0",
-        "frameworkVersion": "3.1.7",
-        "massTransitVersion": "7.0.6.0",
-        "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
-      }
-    }
+  "messageId": "ac9b0000-568d-0050-610d-08d9bf491fee",
+  "conversationId": "ac9b0000-568d-0050-615f-08d9bf491fee",
+  "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
+  "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.MDS:IObject",
+  "messageType": [
+    "urn:message:PIK.ESB.Messages.MDS:IObject",
+    "urn:message:PIK.ESB.Messages:IMessage"
+  ],
+  "message": {
+    "id": 2686,
+    "name": "ТИНАО, Внуковское пос., Авиаконструктора Петлякова ул., 9",
+    "commercialName": "",
+    "shortName": "",
+    "comment": "",
+    "code1C": "RU77МОС.000.062.0.0009.10Д00.О",
+    "districtId": 509,
+    "directionId": 1,
+    "countryId": 181,
+    "regionId": 18,
+    "cityId": 26,
+    "projectId": 795,
+    "projectGuid1C": "13ad001b-fb16-4030-bac9-c0c59ec06f59",
+    "queue": "0",
+    "roomType": "",
+    "objectEncumbrance": false,
+    "containsBuiltInSKB": false,
+    "objectCategoryId": 6,
+    "objectKindId": 4,
+    "objectSeriesId": 67,
+    "objectTypeId": 6,
+    "objectProjectTypeId": 1,
+    "addressPost": "ТИНАО, Внуковское пос., Авиаконструктора Петлякова ул., 9",
+    "addressPostFull": "",
+    "addressBuilding": "",
+    "startDate": "2016-01-01T00:00:00",
+    "guid1C": "94679528-2dc0-4e6b-8bb8-d53243757aaf",
+    "isRenovation": false,
+    "flatDecorationTypeIds": [],
+    "created": "2017-07-05T17:27:10.71",
+    "modified": "2021-12-15T00:30:05.027",
+    "version": "AAAAAazJPvM=",
+    "messageSendDate": "2021-12-15T00:30:05.3446655+03:00",
+    "messageId": "ace5139f-35b7-447a-93c7-bfd15b93de1e",
+    "messageDateTimeUtc": "2021-12-14T21:30:05.3446655Z",
+    "messageUniqueId": "ace5139f-35b7-447a-93c7-bfd15b93de1e",
+    "batchMessageTotal": 1,
+    "batchMessageNumber": 1,
+    "processUniqueId": "832decd7-13da-4f45-b1e6-93a748e40538"
+  },
+  "sentTime": "2021-12-14T21:31:43.8869773Z",
+  "headers": [],
+  "host": {
+    "machineName": "SVPWEB01MSK02",
+    "processName": "PIK.MDS.HangFire",
+    "processId": 902040,
+    "assembly": "PIK.MDS.HangFire",
+    "assemblyVersion": "1.0.0.0",
+    "frameworkVersion": "3.1.7",
+    "massTransitVersion": "7.0.6.0",
+    "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
+  }
+}
 ```
 
 </details>
@@ -866,58 +871,58 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 ```json
 {
-      "messageId": "ac9b0000-568d-0050-a7ba-08d9bf191ed3",
-      "conversationId": "ac9b0000-568d-0050-a813-08d9bf191ed3",
-      "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
-      "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.Implementation.MDS:Section",
-      "messageType": [
-        "urn:message:PIK.ESB.Messages.Implementation.MDS:Section",
-        "urn:message:PIK.ESB.Messages.Implementation.MDS:MdsMessage",
-        "urn:message:PIK.ESB.Messages.Implementation:Message",
-        "urn:message:PIK.ESB.Messages:IMessage",
-        "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
-        "urn:message:PIK.ESB.Messages.MDS:ISection"
-      ],
-      "message": {
-        "id": 4293,
-        "guid": "2f37d529-2885-44e5-a05d-875c0dd7c67c",
-        "floor": "-10",
-        "fromCRM": true,
-        "totalAreaFlat": "0.00",
-        "totalAreaOffice": "0.00",
-        "totalAreaParking": "0.00",
-        "totalAreaApartment": "0.00",
-        "totalAreaTownHouse": "0.00",
-        "totalAreaCKB": "0.00",
-        "totalAreaCKBCount": 0,
-        "totalAreaStorage": "0.00",
-        "number": "4",
-        "objectId": 960,
-        "created": "2017-10-09T18:52:07.213",
-        "modified": "2019-11-21T00:44:41.91",
-        "deleted": "2019-11-21T00:44:41.91",
-        "version": "AAAAAFDzRw0=",
-        "messageSendDate": "2021-12-14T18:48:02.2549295+03:00",
-        "messageId": "0b2cea64-3995-4570-9015-332b24ba610d",
-        "messageDateTimeUtc": "2021-12-14T15:48:02.2549298Z",
-        "messageUniqueId": "0b2cea64-3995-4570-9015-332b24ba610d",
-        "batchMessageTotal": 1,
-        "batchMessageNumber": 1,
-        "processUniqueId": "226fde03-1584-4828-907e-730efb41bc61"
-      },
-      "sentTime": "2021-12-14T15:48:06.191097Z",
-      "headers": [],
-      "host": {
-        "machineName": "SVPWEB01MSK02",
-        "processName": "PIK.MDS.HangFire",
-        "processId": 902040,
-        "assembly": "PIK.MDS.HangFire",
-        "assemblyVersion": "1.0.0.0",
-        "frameworkVersion": "3.1.7",
-        "massTransitVersion": "7.0.6.0",
-        "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
-      }
-    }
+  "messageId": "ac9b0000-568d-0050-a7ba-08d9bf191ed3",
+  "conversationId": "ac9b0000-568d-0050-a813-08d9bf191ed3",
+  "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
+  "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.Implementation.MDS:Section",
+  "messageType": [
+    "urn:message:PIK.ESB.Messages.Implementation.MDS:Section",
+    "urn:message:PIK.ESB.Messages.Implementation.MDS:MdsMessage",
+    "urn:message:PIK.ESB.Messages.Implementation:Message",
+    "urn:message:PIK.ESB.Messages:IMessage",
+    "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
+    "urn:message:PIK.ESB.Messages.MDS:ISection"
+  ],
+  "message": {
+    "id": 4293,
+    "guid": "2f37d529-2885-44e5-a05d-875c0dd7c67c",
+    "floor": "-10",
+    "fromCRM": true,
+    "totalAreaFlat": "0.00",
+    "totalAreaOffice": "0.00",
+    "totalAreaParking": "0.00",
+    "totalAreaApartment": "0.00",
+    "totalAreaTownHouse": "0.00",
+    "totalAreaCKB": "0.00",
+    "totalAreaCKBCount": 0,
+    "totalAreaStorage": "0.00",
+    "number": "4",
+    "objectId": 960,
+    "created": "2017-10-09T18:52:07.213",
+    "modified": "2019-11-21T00:44:41.91",
+    "deleted": "2019-11-21T00:44:41.91",
+    "version": "AAAAAFDzRw0=",
+    "messageSendDate": "2021-12-14T18:48:02.2549295+03:00",
+    "messageId": "0b2cea64-3995-4570-9015-332b24ba610d",
+    "messageDateTimeUtc": "2021-12-14T15:48:02.2549298Z",
+    "messageUniqueId": "0b2cea64-3995-4570-9015-332b24ba610d",
+    "batchMessageTotal": 1,
+    "batchMessageNumber": 1,
+    "processUniqueId": "226fde03-1584-4828-907e-730efb41bc61"
+  },
+  "sentTime": "2021-12-14T15:48:06.191097Z",
+  "headers": [],
+  "host": {
+    "machineName": "SVPWEB01MSK02",
+    "processName": "PIK.MDS.HangFire",
+    "processId": 902040,
+    "assembly": "PIK.MDS.HangFire",
+    "assemblyVersion": "1.0.0.0",
+    "frameworkVersion": "3.1.7",
+    "massTransitVersion": "7.0.6.0",
+    "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
+  }
+}
 ```
 
 </details>
@@ -927,48 +932,48 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 ```json
 {
-      "messageId": "ac9b0000-568d-0050-099d-08d9bf192464",
-      "conversationId": "ac9b0000-568d-0050-09ef-08d9bf192464",
-      "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
-      "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.Implementation.MDS:Floor",
-      "messageType": [
-        "urn:message:PIK.ESB.Messages.Implementation.MDS:Floor",
-        "urn:message:PIK.ESB.Messages.MDS:IFloor",
-        "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
-        "urn:message:PIK.ESB.Messages:IMessage"
-      ],
-      "message": {
-        "fromBOP": true,
-        "guid": "79bd9368-84ba-4e9e-a59b-2166c4c6c789",
-        "id": 97616,
-        "number": "129",
-        "sectionId": 7732,
-        "sectionGuid": "8fd3ae85-de5b-43a5-9e99-fe7961c6f7dc",
-        "created": "2019-08-14T16:44:44.86",
-        "modified": "2021-01-14T23:41:02.44",
-        "deleted": "2020-12-10T00:00:00",
-        "version": "AAAAARIJSOc=",
-        "messageSendDate": "2021-12-14T18:48:08.7541933+03:00",
-        "messageId": "96b42be6-4870-4027-9920-68246f78cdc2",
-        "messageDateTimeUtc": "2021-12-14T15:48:08.7541933Z",
-        "messageUniqueId": "96b42be6-4870-4027-9920-68246f78cdc2",
-        "batchMessageTotal": 1,
-        "batchMessageNumber": 1,
-        "processUniqueId": "fdf12699-7d02-4a9f-95ed-e4132d459629"
-      },
-      "sentTime": "2021-12-14T15:48:15.5259293Z",
-      "headers": [],
-      "host": {
-        "machineName": "SVPWEB01MSK02",
-        "processName": "PIK.MDS.HangFire",
-        "processId": 902040,
-        "assembly": "PIK.MDS.HangFire",
-        "assemblyVersion": "1.0.0.0",
-        "frameworkVersion": "3.1.7",
-        "massTransitVersion": "7.0.6.0",
-        "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
-      }
-    }
+  "messageId": "ac9b0000-568d-0050-099d-08d9bf192464",
+  "conversationId": "ac9b0000-568d-0050-09ef-08d9bf192464",
+  "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
+  "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.Implementation.MDS:Floor",
+  "messageType": [
+    "urn:message:PIK.ESB.Messages.Implementation.MDS:Floor",
+    "urn:message:PIK.ESB.Messages.MDS:IFloor",
+    "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
+    "urn:message:PIK.ESB.Messages:IMessage"
+  ],
+  "message": {
+    "fromBOP": true,
+    "guid": "79bd9368-84ba-4e9e-a59b-2166c4c6c789",
+    "id": 97616,
+    "number": "129",
+    "sectionId": 7732,
+    "sectionGuid": "8fd3ae85-de5b-43a5-9e99-fe7961c6f7dc",
+    "created": "2019-08-14T16:44:44.86",
+    "modified": "2021-01-14T23:41:02.44",
+    "deleted": "2020-12-10T00:00:00",
+    "version": "AAAAARIJSOc=",
+    "messageSendDate": "2021-12-14T18:48:08.7541933+03:00",
+    "messageId": "96b42be6-4870-4027-9920-68246f78cdc2",
+    "messageDateTimeUtc": "2021-12-14T15:48:08.7541933Z",
+    "messageUniqueId": "96b42be6-4870-4027-9920-68246f78cdc2",
+    "batchMessageTotal": 1,
+    "batchMessageNumber": 1,
+    "processUniqueId": "fdf12699-7d02-4a9f-95ed-e4132d459629"
+  },
+  "sentTime": "2021-12-14T15:48:15.5259293Z",
+  "headers": [],
+  "host": {
+    "machineName": "SVPWEB01MSK02",
+    "processName": "PIK.MDS.HangFire",
+    "processId": 902040,
+    "assembly": "PIK.MDS.HangFire",
+    "assemblyVersion": "1.0.0.0",
+    "frameworkVersion": "3.1.7",
+    "massTransitVersion": "7.0.6.0",
+    "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
+  }
+}
 ```
 
 </details>
@@ -1020,65 +1025,65 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 ```json
 {
-      "messageId": "ac9b0000-568d-0050-f736-08d9bf2893bd",
-      "conversationId": "ac9b0000-568d-0050-f788-08d9bf2893bd",
-      "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
-      "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.MDS:IRealEstate",
-      "messageType": [
-        "urn:message:PIK.ESB.Messages.MDS:IRealEstate",
-        "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
-        "urn:message:PIK.ESB.Messages:IMessage"
-      ],
-      "message": {
-        "addressBuilding": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4",
-        "addressPost": "",
-        "code1C": "0000494864",
-        "codingPlan": "",
-        "conditionalNumber": "253",
-        "created": "2019-04-16T07:24:49.58",
-        "decoration": "",
-        "floor": "-2",
-        "floorId": 134219,
-        "fullName": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4",
-        "guid1C": "ffc4bda2-7a12-46f2-9611-d6b3e55b64d1",
-        "guidCRM": "7b395e46-955f-e911-9588-bed2293f6634",
-        "id": 490004,
-        "isCityPart": false,
-        "modified": "2021-12-14T20:38:36.777",
-        "name": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4, усл. 253, (Гараж)",
-        "numberOnStairwell": "253",
-        "numberOnStairwellInOrder": "253",
-        "objectId": 1296,
-        "realEstateNumber": "",
-        "roomCount": 1,
-        "section": "Автостоянка",
-        "sectionId": 11308,
-        "startDate": "2006-01-01T00:00:00",
-        "totalArea": "1.00",
-        "totalProjectArea": "1.00",
-        "realEstateKindId": 3,
-        "version": "AAAAAazAEOs=",
-        "batchMessageNumber": 1,
-        "batchMessageTotal": 1,
-        "messageSendDate": "2021-12-14T20:38:37.6484262+03:00",
-        "messageId": "b8a5888b-1597-4f5d-a145-ed28fb78114e",
-        "messageDateTimeUtc": "2021-12-14T17:38:37.6484262Z",
-        "messageUniqueId": "b8a5888b-1597-4f5d-a145-ed28fb78114e",
-        "processUniqueId": "a11ca153-1676-4676-a4c2-08e8e2158ddc"
-      },
-      "sentTime": "2021-12-14T17:38:44.7933238Z",
-      "headers": [],
-      "host": {
-        "machineName": "SVPWEB01MSK02",
-        "processName": "PIK.MDS.HangFire",
-        "processId": 902040,
-        "assembly": "PIK.MDS.HangFire",
-        "assemblyVersion": "1.0.0.0",
-        "frameworkVersion": "3.1.7",
-        "massTransitVersion": "7.0.6.0",
-        "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
-      }
-    }
+  "messageId": "ac9b0000-568d-0050-f736-08d9bf2893bd",
+  "conversationId": "ac9b0000-568d-0050-f788-08d9bf2893bd",
+  "sourceAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/SVPWEB01MSK02_PIKMDSHangFire_bus_i1poyynstwyfyjsabdc5s1rnyg?temporary=true",
+  "destinationAddress": "rabbitmq://amqp.rabbit.svc.pik-digital.ru/pik/PIK.ESB.Messages.MDS:IRealEstate",
+  "messageType": [
+    "urn:message:PIK.ESB.Messages.MDS:IRealEstate",
+    "urn:message:PIK.ESB.Messages.MDS:IMdsMessage",
+    "urn:message:PIK.ESB.Messages:IMessage"
+  ],
+  "message": {
+    "addressBuilding": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4",
+    "addressPost": "",
+    "code1C": "0000494864",
+    "codingPlan": "",
+    "conditionalNumber": "253",
+    "created": "2019-04-16T07:24:49.58",
+    "decoration": "",
+    "floor": "-2",
+    "floorId": 134219,
+    "fullName": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4",
+    "guid1C": "ffc4bda2-7a12-46f2-9611-d6b3e55b64d1",
+    "guidCRM": "7b395e46-955f-e911-9588-bed2293f6634",
+    "id": 490004,
+    "isCityPart": false,
+    "modified": "2021-12-14T20:38:36.777",
+    "name": "г. Москва, ул. Полярная, вл. 25, подземная автостоянка на 439 м/м, корп. 2.4, усл. 253, (Гараж)",
+    "numberOnStairwell": "253",
+    "numberOnStairwellInOrder": "253",
+    "objectId": 1296,
+    "realEstateNumber": "",
+    "roomCount": 1,
+    "section": "Автостоянка",
+    "sectionId": 11308,
+    "startDate": "2006-01-01T00:00:00",
+    "totalArea": "1.00",
+    "totalProjectArea": "1.00",
+    "realEstateKindId": 3,
+    "version": "AAAAAazAEOs=",
+    "batchMessageNumber": 1,
+    "batchMessageTotal": 1,
+    "messageSendDate": "2021-12-14T20:38:37.6484262+03:00",
+    "messageId": "b8a5888b-1597-4f5d-a145-ed28fb78114e",
+    "messageDateTimeUtc": "2021-12-14T17:38:37.6484262Z",
+    "messageUniqueId": "b8a5888b-1597-4f5d-a145-ed28fb78114e",
+    "processUniqueId": "a11ca153-1676-4676-a4c2-08e8e2158ddc"
+  },
+  "sentTime": "2021-12-14T17:38:44.7933238Z",
+  "headers": [],
+  "host": {
+    "machineName": "SVPWEB01MSK02",
+    "processName": "PIK.MDS.HangFire",
+    "processId": 902040,
+    "assembly": "PIK.MDS.HangFire",
+    "assemblyVersion": "1.0.0.0",
+    "frameworkVersion": "3.1.7",
+    "massTransitVersion": "7.0.6.0",
+    "operatingSystemVersion": "Microsoft Windows NT 10.0.14393.0"
+  }
+}
 ```
 
 </details>
@@ -1776,8 +1781,8 @@ masstransit:publish --entity=object_types --from="2020-20-20 20:20:20"
 masstransit:consume
 ```
 
-Активные слушатели указываются в `env` переменной приложения `MASSTRANSIT_ACTIVE_CONSUME_HANDLERS` через запятую без
-пробелов (не путать с переменной, которая передается в `review:start`).
+Активные слушатели в ТН указываются в `env` переменной приложения `MASSTRANSIT_ACTIVE_CONSUME_HANDLERS` через запятую
+без пробелов (не путать с переменной, которая передается в `review:start`).
 
 Пример: `MASSTRANSIT_ACTIVE_CONSUME_HANDLERS=ExternalUserConsumeHandler,IssueAttachmentConsumeHandler`.
 
@@ -1825,7 +1830,14 @@ import:prepare_before_full_objects
 ### Отслеживание процесса публикации и получения сообщений
 
 Публикация и получение сообщений происходит всегда через job, все они логируются в kibana с текстом 'Masstransit log', в
-input пишется получаемое сообщение, в output - отправляемое.
+input пишется получаемое сообщение, в output - отправляемое, в type указывается название job, к примеру:
+
+```
+"type":"App\\Services\\MassTransit\\Jobs\\Consume\\RC\\MeetingConsumeJob"
+```
+
+И, чтобы найти логи по встречам, нужно указать в поиске `MeetingConsumeJob` или `MeetingConsume`. Названия job всегда
+называются так же, как и названия [слушателей](#все-возможные-слушатели), только вместо слова Handler, там слово Job.
 
 Если при выполнении job произошла ошибка, то она пишется в таблицу failed_jobs. Данные в этой таблице хранятся 14 дней.
 
@@ -1841,7 +1853,8 @@ c суффиксом _error и так же отправляются в sentry, �
 По умолчанию на feature стендах не работает прослушивание и отправка сообщений.
 
 Чтобы включить прослушивание, нужно в `review:start` передать два параметра: `RABBITMQ` равное `true` и
-`MASSTRANSIT_CONSUME_HANDLERS` равное названиям слушателей через запятую (без пробелов).
+`MASSTRANSIT_CONSUME_HANDLERS` равное названиям слушателей через запятую в одну строчку (без пробелов и переносов 
+строк).
 
 Чтобы включить отправку, нужно передать `RABBITMQ` равное `true`.
 
@@ -1851,7 +1864,41 @@ c суффиксом _error и так же отправляются в sentry, �
 
 | Переменная | Описание | Дефолт | Пример |
 | --- | --- | --- | --- |
-| `MASSTRANSIT_CONSUME_HANDLERS` | Названия слушателей через запятую (без пробелов) | На feature пусто, на остальных [все возможные слушатели](#все-возможные-слушатели) | `ExternalUserConsumeHandler,IssueAttachmentConsumeHandler` |
+| `MASSTRANSIT_CONSUME_HANDLERS` | Названия слушателей через запятую в одну строчку (без пробелов и переносов строк) | На feature пусто, на остальных [все возможные слушатели](#все-возможные-слушатели) | `ExternalUserConsumeHandler,IssueAttachmentConsumeHandler` |
 | `RABBITMQ` | Булево значение, если `true`, то запускается rabbitmq consumer и publisher | На feature равно `false`, т.к. не во всех задачах нужна интеграция по шине rabbitmq | `true` |
 
 #### Описание всех переменных [тут](stands.md#все-переменные-feature-стендов)
+
+### FAQ
+
+* Почему ТН не получает сообщение?
+    * Точно ли внешняя система отправила сообщение?
+    * На нужном ли [стенде](stands.md#стенды) ищите сообщение и в нужном ли [RabbitMQ](#rabbitmq-addresses)?
+    * Если это feature стенд, то передавали ли переменные `MASSTRANSIT_CONSUME_HANDLERS` и `RABBITMQ` при разворачивании
+      стенда? Как это сделать, описано [тут](#stands-settings).
+    * Если передали, верно ли [переменные](#описание-переменных) указаны?
+    * Верно ли указаны `bindings` в RabbitMQ? Как смотреть `bindings`
+      описано [тут](#получение-сообщения-от-внешней-системы).
+    * Есть ли в RabbitMQ у очереди (queue) слушатель (consumer)? Как смотреть `consumers`
+      описано [тут](#rabbitmq-queue-consumers).
+    * Есть ли в [kibana логи](#отслеживание-процесса-публикации-и-получения-сообщений) об обработке job сообщений?
+    * Если логи есть, то нет ли там ошибок в процессе получения и обработки сообщения?
+    * Возможно сообщение получено, но не были произведены ожидаемые действия, точно ли они должны были быть совершены,
+      согласно бизнес логике?
+
+* Почему ТН не отправляет сообщение?
+    * Должен ли ТН отправлять его, согласно бизнес логике?
+    * Если это feature стенд, то передавали ли переменную `RABBITMQ` при разворачивании стенда? Как это сделать,
+      описано [тут](#stands-settings).
+    * На сообщениях `PIK.ESB.Messages.Implementation.Tracker:CheckList`
+      и `PIK.ESB.Messages.Implementation.Tracker:WorkGroupUsed` стоит задержка 3 минуты на отправку.
+    * Верно ли указаны `bindings` в RabbitMQ? Как смотреть `bindings` описано
+      [тут](#получение-сообщения-от-внешней-системы).
+    * На нужном ли [стенде](stands.md#стенды) ищите сообщение и в нужном ли [RabbitMQ](#rabbitmq-addresses)?
+    * Если не можете найти сообщение в RabbitMQ в очереди, у которого есть слушатель, то возможно слушатель уже получил
+      сообщение, полученное сообщение удаляется из RabbitMQ. Чтобы вручную получить сообщение в RabbitMQ, нужно вручную
+      создать еще одну очередь и привязать её к нужному exchange и искать сообщение уже в новой очереди.
+    * Есть ли в [kibana логи](#отслеживание-процесса-публикации-и-получения-сообщений) об обработке job сообщений?
+    * Если логи есть, то нет ли там ошибок в процессе отправки сообщения?
+    * Возможно сообщение получено внешней системой, но не были произведены ожидаемые действия, точно ли они должны были
+      быть совершены, согласно бизнес логике?  
