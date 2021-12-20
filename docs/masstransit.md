@@ -122,9 +122,15 @@ MassTransit и RabbitMQ используются для интеграции с 
 
 7. Скрипт слушателя в ТН определяет тип сообщения по `messageType` из сообщения
 
-### Схема получения сообщения
+### Схемы получения сообщения
+
+#### Один слушатель
 
 ![mr-list](images/masstransit-message-schema.png)
+
+#### Много слушателей
+
+![mr-list](images/mt-many-consumers-message-schema.png)
 
 ### Примеры сообщений, которые получает ТН <a id="input-messages"/>
 
