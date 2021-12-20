@@ -1,5 +1,16 @@
-[![pipeline status](https://git.pik.ru/tech-control-services/issues/badges/master/pipeline.svg)](https://git.pik.ru/tech-control-services/issues/commits/master)
-[![coverage report](https://git.pik.ru/tech-control-services/issues/badges/master/coverage.svg)](https://git.pik.ru/tech-control-services/issues/commits/master)
+[![pipeline status](https://git.pik.ru/tech-control-services/core/badges/master/pipeline.svg)](https://git.pik.ru/tech-control-services/core/commits/master)
+[![coverage report](https://git.pik.ru/tech-control-services/core/badges/master/coverage.svg)](https://git.pik.ru/tech-control-services/core/commits/master)
+
+Содержание:
+
+* [Для разработчиков](#для-разработчиков)
+* [Автоматизация запуска приложения](#автоматизация-запуска-приложения)
+* [Разворачивание проекта](#разворачивание-проекта)
+* [Swagger](#swagger)
+* [Beanstalkd](#beanstalkd)
+* [MassTransit и RabbitMQ](#masstransit)
+* [Стенды](#стенды)
+* [Настройка конфигураций в `.env` (нужно обновить информацию)](#env-vars)
 
 ### Для разработчиков:
 Нужно установить `docker-compose`. [Инструкция по установке на Linux Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
@@ -110,13 +121,13 @@ docker-compose exec app artisan jwt:admin_token
 * check_result
 * export_issues_to_xls
 
-## MassTransit и RabbitMQ 
+## MassTransit и RabbitMQ <a id="masstransit"/>
 Краткая документация по MassTransit и RabbitMQ [тут](docs/masstransit.md)
 
 ### Стенды
 Информация по стендам [тут](docs/stands.md)
 
-### Тесты - phpunit
+### Тесты - phpunit <a id="phpunit"/>
 Для ускорения тестов в CI/CD все feature тесты разделены на логические группы, тесты в CI/CD запускаются параллельно по 
 каждой группе, плюс отдельно запускаются тесты из папки Unit.
 
@@ -125,7 +136,7 @@ docker-compose exec app artisan jwt:admin_token
 Список групп: Issue, CheckList, User, Company, Object, OT, Other, default
 
 
-## Настройка конфигураций в `.env`
+## Настройка конфигураций в `.env` (нужно обновить информацию) <a id="env-vars"/>
 #### Загрузки файлов
 По умолчанию используется Amazon Web Services. Для его работы в `.env` надо заполнить
 ```dotenv
